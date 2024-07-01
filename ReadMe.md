@@ -19,31 +19,25 @@ Entities
   - Question
   - Answer
   - Comment
-  - Likes
-  - Dislikes
 - Question
   - id
   - title
   - description
   - date-time
+  - likes<User>
+  - dislikes<User>
   - User
-  - Answer
-  - Likes
-  - Dislikes
+  - List<Answers>
 - Answer
   - id
   - date-time
   - Comment
   - User
-  - Likes
-  - Dislikes
+  - Question
+  - likes<User>
+  - dislikes<User>
 - Comment
   - id
   - date-time
   - User
   - Answer
-- Like
-  - id
-  - User
-  - Answer
-  - Question
