@@ -41,3 +41,14 @@ Entities
   - date-time
   - User
   - Answer
+
+Implementation Steps:
+1) Configure DB setup in application.properties
+2) Start configuring Entities
+   1) DTO object is used to store data exposed at the api call
+   2) Entity object is used to store data to be stored in the database
+   3) Modelmapper should be defined as a bean
+   4) Lombok Data is important for getter & setter for entity & corresponding DTO
+   5) for doing a not-empty check at presentation layer, add spring boot starter validation
+   6) also add @Valid annotation apart from @NotBlank etc
+   
