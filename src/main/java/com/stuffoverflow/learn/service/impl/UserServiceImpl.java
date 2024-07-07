@@ -33,4 +33,23 @@ public class UserServiceImpl implements UserService {
         List<UserDto> userDtoList = userList.stream().map(user -> this.modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
         return userDtoList;
     }
+
+    @Override
+    public UserDto updateUser(UserDto userDto) {
+        User userToUpdate = this.userRepo.findById(userDto.getId()).orElseThrow(()->new RuntimeException("user not found"));
+
+        userToUpdate.setUserName(userDto.getUserName());
+        userToUpdate.setPassword(userDto.getPassword());
+        userToUpdate.setFirstName(userDto.getFirstName());
+        userToUpdate.setLastName(userDto.getLastName());
+        User updatedUser = this.userRepo.save(userToUpdate);
+
+        return this.modelMapper.map(updatedUser, UserDto.class);
+    }
+
+    @Override
+    public void deleteUser(int userId) {
+        User userToDelete = this.userRepo.findById(userId).orElseThrow(()->new RuntimeException("user not found"));
+        this.userRepo.delete(userToDelete);
+    }
 }

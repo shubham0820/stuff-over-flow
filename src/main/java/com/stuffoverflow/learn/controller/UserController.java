@@ -32,6 +32,15 @@ public class UserController {
         return new ResponseEntity<>(listOfUserDto, HttpStatus.FOUND);
     }
     //Update
+    private ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto){
+        UserDto updatedUser = this.userService.updateUser(userDto);
+        return new ResponseEntity<>(updatedUser, HttpStatus.ACCEPTED);
+    }
 
     //Delete
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deleteUser(@RequestParam int userId){
+        this.userService.deleteUser(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
