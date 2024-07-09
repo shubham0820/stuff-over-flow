@@ -24,10 +24,16 @@ Entities
   - title
   - description
   - date-time
-  - likes<User>
-  - dislikes<User>
   - User
   - List<Answers>
+- QuestionLikes
+  - id
+  - User
+  - Question
+- QuestionDislikes
+  - id
+  - User
+  - Question
 - Answer
   - id
   - date-time

@@ -1,10 +1,10 @@
 package com.stuffoverflow.learn.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -23,4 +23,8 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Question> listOfQuestions = new ArrayList<>();
+
 }
