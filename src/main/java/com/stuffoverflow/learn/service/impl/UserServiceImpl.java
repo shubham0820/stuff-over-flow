@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto) {
-        User userToUpdate = this.userRepo.findById(userDto.getId()).orElseThrow(()->new RuntimeException("user not found"));
+    public UserDto updateUser(UserDto userDto, int userId) {
+        User userToUpdate = this.userRepo.findById(userId).orElseThrow(()->new RuntimeException("user not found"));
 
         userToUpdate.setUserName(userDto.getUserName());
         userToUpdate.setPassword(userDto.getPassword());

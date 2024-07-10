@@ -32,15 +32,17 @@ public class UserController {
         return new ResponseEntity<>(listOfUserDto, HttpStatus.FOUND);
     }
     //Update
-    private ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto){
-        UserDto updatedUser = this.userService.updateUser(userDto);
+    @PutMapping("/userId={userId}")
+    private ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,
+                                               @PathVariable("userId") int userId){
+        UserDto updatedUser = this.userService.updateUser(userDto, userId);
         return new ResponseEntity<>(updatedUser, HttpStatus.ACCEPTED);
     }
 
     //Delete
-    @DeleteMapping("/{id}")
-    private ResponseEntity<Void> deleteUser(@RequestParam int userId){
+    @DeleteMapping("/userId={id}")
+    private ResponseEntity<String> deleteUser(@PathVariable("id") int userId){
         this.userService.deleteUser(userId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("user has been deleted", HttpStatus.OK);
     }
 }
