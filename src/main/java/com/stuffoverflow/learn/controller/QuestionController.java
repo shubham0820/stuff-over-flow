@@ -32,6 +32,17 @@ public class QuestionController {
 
 
     // update
+    @PutMapping("/questionId={questionId}")
+    private ResponseEntity<QuestionDto> updateQuestion(@PathVariable("questionId") int questionId,
+                                                       @RequestBody QuestionDto questionDto){
+        QuestionDto updatedQuestion = this.questionService.updateQuestion(questionId, questionDto);
+        return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
+    }
 
     // delete
+    @DeleteMapping("/questionId={questionId}")
+    private ResponseEntity<Void> deleteQuestion(@PathVariable int questionId){
+        this.questionService.deleteQuestion(questionId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

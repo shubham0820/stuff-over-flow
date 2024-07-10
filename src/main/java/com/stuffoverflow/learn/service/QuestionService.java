@@ -10,7 +10,7 @@ public interface QuestionService {
     QuestionDto createQuestion(QuestionDto questionDto, int userId);
     QuestionDto getQuestion(Integer questionId);
     List<QuestionDto> getQuestions();
-    QuestionDto updateQuestion(QuestionDto questionDto);
-    QuestionDto deleteQuestion(Integer questionId);
+    QuestionDto updateQuestion(int questionId, QuestionDto questionDto);
+    void deleteQuestion(Integer questionId);
 
 }

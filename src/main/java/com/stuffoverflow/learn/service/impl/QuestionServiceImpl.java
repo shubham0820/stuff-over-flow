@@ -49,13 +49,28 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
+
+    /*
+    Only title & description of a Question can be updated
+    * */
     @Override
-    public QuestionDto updateQuestion(QuestionDto questionDto) {
-        return null;
+    public QuestionDto updateQuestion(int questionId, QuestionDto questionDto) {
+        Question questionToUpdate = this.questionRepo.findById(questionId).orElseThrow(
+                () -> new RuntimeException("question with id "+questionId+" not found"));
+
+        questionToUpdate.setTitle(questionDto.getTitle());
+        questionToUpdate.setDescription(questionDto.getDescription());
+
+        Question updatedQuestion = this.questionRepo.save(questionToUpdate);
+
+        return this.modelMapper.map(updatedQuestion, QuestionDto.class);
     }
 
     @Override
-    public QuestionDto deleteQuestion(Integer questionId) {
-        return null;
+    public void deleteQuestion(Integer questionId) {
+        Question questionToDelete = this.questionRepo.findById(questionId).orElseThrow(
+                ()->new RuntimeException("question with id "+questionId+" not found"));
+
+        this.questionRepo.delete(questionToDelete);
     }
 }
