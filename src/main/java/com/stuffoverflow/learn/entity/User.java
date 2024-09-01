@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 @Data
 public class User {
     @Id
@@ -26,5 +25,4 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Question> listOfQuestions = new ArrayList<>();
-
 }

@@ -40,8 +40,6 @@ Entities
   - Comment
   - User
   - Question
-  - likes<User>
-  - dislikes<User>
 - Comment
   - id
   - date-time
