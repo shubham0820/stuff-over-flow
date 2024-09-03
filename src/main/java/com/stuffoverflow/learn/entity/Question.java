@@ -20,6 +20,8 @@ public class Question {
     private Date createdTimestamp;
     @ManyToOne
     private User user;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Answer> listOfAnswers;
 
 //    @TODO: add QuestionLikes & QuestionsDislikes attributes
 }

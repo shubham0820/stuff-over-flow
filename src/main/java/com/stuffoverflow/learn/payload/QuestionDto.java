@@ -4,6 +4,7 @@ import com.stuffoverflow.learn.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class QuestionDto {
     private String description;
     private Date createdTimestamp;
     private UserDto user;
+    private List<AnswerDto> listOfAnswers;
 //    private List<UserDto> likedByUsers;
 //    private List<UserDto> dislikedByUsers;
 }
