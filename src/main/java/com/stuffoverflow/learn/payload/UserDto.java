@@ -16,7 +16,7 @@ import lombok.*;
 @Setter
 public class UserDto {
 
-    private int id;
+    private int userId;
 
     @NotNull
     @NotBlank(message = "first name can't be empty")

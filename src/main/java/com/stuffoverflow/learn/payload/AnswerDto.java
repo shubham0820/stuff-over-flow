@@ -1,5 +1,6 @@
 package com.stuffoverflow.learn.payload;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.stuffoverflow.learn.entity.Question;
 import com.stuffoverflow.learn.entity.User;
 import jakarta.persistence.Id;
@@ -16,7 +17,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class AnswerDto {
-    private int id;
+    private int answerId;
     private String content;
     private Date createdTimestamp;
     private int questionId;

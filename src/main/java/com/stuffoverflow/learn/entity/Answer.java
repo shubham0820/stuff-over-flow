@@ -10,7 +10,7 @@ import java.util.Date;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int answerId;
 
     private String content;
 

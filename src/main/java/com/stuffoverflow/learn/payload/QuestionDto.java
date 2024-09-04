@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class QuestionDto {
-    private Integer id;
+    private Integer questionId;
     private String title;
     private String description;
     private Date createdTimestamp;
