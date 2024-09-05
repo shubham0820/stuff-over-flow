@@ -1,7 +1,9 @@
 package com.stuffoverflow.learn.service.impl;
 
+import com.stuffoverflow.learn.entity.Role;
 import com.stuffoverflow.learn.entity.User;
 import com.stuffoverflow.learn.payload.UserDto;
+import com.stuffoverflow.learn.repository.RoleRepo;
 import com.stuffoverflow.learn.repository.UserRepo;
 import com.stuffoverflow.learn.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -19,6 +22,19 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+    @Override
+    public UserDto registerNewUser(UserDto userDto) {
+        User user = this.modelMapper.map(userDto, User.class);
+        Role role = this.roleRepo.findById(501).orElseThrow(()->new RuntimeException("501 roleid not found"));
+        user.setRoleSet(Set.of(role));
+
+        User createdUser = this.userRepo.save(user);
+        return this.modelMapper.map(createdUser, UserDto.class);
+    }
 
     @Override
     public UserDto createUser(UserDto userDto) {

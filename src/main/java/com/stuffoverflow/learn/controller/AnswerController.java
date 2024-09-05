@@ -37,14 +37,14 @@ public class AnswerController {
 
     //update
     @PutMapping("/")
-    public ResponseEntity<AnswerDto> updateAnswer(@RequestBody() AnswerDto answerDto){
+    public ResponseEntity<AnswerDto> updateAnswer(@RequestBody AnswerDto answerDto){
         AnswerDto currAns = this.answerService.updateAnswer(answerDto);
         return new ResponseEntity<>(currAns, HttpStatus.OK);
     }
 
     //delete
     @DeleteMapping("/answerId={answerId}")
-    public ResponseEntity<Void> deleteAnswer(@RequestParam("answerId") int answerId){
+    public ResponseEntity<Void> deleteAnswer(@PathVariable("answerId") int answerId){
         this.answerService.deleteAnswer(answerId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -3,12 +3,17 @@ StackOverflow
 Functionalities
 - User login & registration
 - Users CRU Questions
-- Users CRUD Answers
+- Users CRUD Answers -> one user can create only 1 answer per question
 - Users likes Answers
 - Users dis-likes Answers
 - Answers have Comments posted by users
 - Answers are needed to be sorted on the basis of number of likes
-
+Features:
+- jwt authentication
+- pagination
+- sorting
+- question & ans can may have images
+- 
 
 Entities
 - User

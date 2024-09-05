@@ -1,14 +1,13 @@
 package com.stuffoverflow.learn.payload;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.stuffoverflow.learn.entity.Role;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,4 +32,6 @@ public class UserDto {
     @NotBlank(message = "password can't be empty")
     @Size(min = 8,max = 30)
     private String password;
+
+    private Set<Role> roleSet;
 }
