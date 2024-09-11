@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,4 +22,7 @@ public class Answer {
     private User user;
 
     private Date createdTimestamp;
+
+    @OneToMany(mappedBy = "commentedOnAnswer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> listOfComments;
 }

@@ -13,7 +13,6 @@ Features:
 - pagination
 - sorting
 - question & ans can may have images
-- 
 
 Entities
 - User

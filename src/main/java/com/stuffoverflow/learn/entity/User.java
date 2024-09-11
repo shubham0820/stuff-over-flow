@@ -40,4 +40,7 @@ public class User {
                     @JoinColumn(name = "role_id", referencedColumnName = "roleId")
             })
     private Set<Role> roleSet;
+
+    @OneToMany(mappedBy = "postedByUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Comment> listOfComments;
 }
