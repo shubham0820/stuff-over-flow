@@ -26,8 +26,10 @@ public class CommentServiceImpl implements CommentService {
     private ModelMapper modelMapper;
     @Override
     public CommentDto createComment(CommentDto commentDto) {
-        User postedByUser = this.userRepo.findById(commentDto.getPostedByUserId()).orElseThrow(() -> new RuntimeException());
-        Answer commentedOnAnswer = this.answerRepo.findById(commentDto.getCommentedOnAnswerId()).orElseThrow(() -> new RuntimeException());
+        User postedByUser = this.userRepo.findById(commentDto.getPostedByUserId())
+                .orElseThrow(() -> new RuntimeException("user with id "+commentDto.getPostedByUserId()+" not found"));
+        Answer commentedOnAnswer = this.answerRepo.findById(commentDto.getCommentedOnAnswerId())
+                .orElseThrow(() -> new RuntimeException("answer with id "+commentDto.getCommentedOnAnswerId()+" not found"));
 
         Comment comment = this.modelMapper.map(commentDto, Comment.class);
         comment.setPostedByUser(postedByUser);
@@ -41,16 +43,23 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentDto getComment(int commentId) {
-        return null;
+        Comment comment = this.commentRepo.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("comment with id "+commentId+" not found"));
+        return this.modelMapper.map(comment, CommentDto.class);
     }
 
     @Override
     public CommentDto updateComment(CommentDto commentDto) {
-        return null;
+        Comment comment = this.commentRepo.findById(commentDto.getCommentId())
+                .orElseThrow(() -> new RuntimeException("comment with id "+commentDto.getCommentId()+" not found"));
+        comment.setCommentContent(commentDto.getCommentContent());
+
+        Comment updatedComment = this.commentRepo.save(comment);
+        return this.modelMapper.map(updatedComment, CommentDto.class);
     }
 
     @Override
     public void deleteComment(int commentId) {
-
+        this.commentRepo.deleteById(commentId);
     }
 }
