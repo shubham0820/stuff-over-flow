@@ -13,6 +13,5 @@ import java.util.List;
 public class RoleDto {
     private int roleId;
     private int role;
-
-    private List<User> listOfUsers;
+//    private List<User> listOfUsers;
 }

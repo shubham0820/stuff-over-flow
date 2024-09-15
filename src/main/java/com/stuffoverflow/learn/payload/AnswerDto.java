@@ -1,6 +1,7 @@
 package com.stuffoverflow.learn.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.stuffoverflow.learn.entity.Comment;
 import com.stuffoverflow.learn.entity.Question;
 import com.stuffoverflow.learn.entity.User;
 import jakarta.persistence.Id;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +24,5 @@ public class AnswerDto {
     private Date createdTimestamp;
     private int questionId;
     private int userId;
-
+//    private List<Comment> listOfComments;
 }

@@ -28,12 +28,12 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto createComment(CommentDto commentDto) {
         User postedByUser = this.userRepo.findById(commentDto.getPostedByUserId())
                 .orElseThrow(() -> new RuntimeException("user with id "+commentDto.getPostedByUserId()+" not found"));
-        Answer commentedOnAnswer = this.answerRepo.findById(commentDto.getCommentedOnAnswerId())
-                .orElseThrow(() -> new RuntimeException("answer with id "+commentDto.getCommentedOnAnswerId()+" not found"));
+        Answer commentedOnAnswer = this.answerRepo.findById(commentDto.getAnswerId())
+                .orElseThrow(() -> new RuntimeException("answer with id "+commentDto.getAnswerId()+" not found"));
 
         Comment comment = this.modelMapper.map(commentDto, Comment.class);
         comment.setPostedByUser(postedByUser);
-        comment.setCommentedOnAnswer(commentedOnAnswer);
+        comment.setAnswer(commentedOnAnswer);
         comment.setCreationTime(new Date());
 
         Comment createdComment = this.commentRepo.save(comment);

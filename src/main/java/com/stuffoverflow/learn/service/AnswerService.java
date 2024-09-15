@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AnswerService {
     AnswerDto createAnswer(AnswerDto answerDto);
+    AnswerDto getAnswers(int answerId);
     List<AnswerDto> getAnswers();
     AnswerDto updateAnswer(AnswerDto answerDto);
     void deleteAnswer(int answerId);

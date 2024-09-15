@@ -23,6 +23,6 @@ public class Answer {
 
     private Date createdTimestamp;
 
-    @OneToMany(mappedBy = "commentedOnAnswer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> listOfComments;
 }

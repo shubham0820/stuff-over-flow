@@ -59,6 +59,13 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    public AnswerDto getAnswers(int answerId) {
+        Answer answer = this.answerRepository.findById(answerId).orElseThrow(
+                () -> new RuntimeException("answer doesn't exists"));
+        return this.modelMapper.map(answer, AnswerDto.class);
+    }
+
+    @Override
     public List<AnswerDto> getAnswers() {
         List<Answer> listOfAnswers = this.answerRepository.findAll();
         List<AnswerDto> answerDtoList = listOfAnswers.stream().map(answer -> this.modelMapper.map(answer, AnswerDto.class)).collect(Collectors.toList());

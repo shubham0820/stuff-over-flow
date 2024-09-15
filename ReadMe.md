@@ -59,4 +59,17 @@ Implementation Steps:
    4) Lombok Data is important for getter & setter for entity & corresponding DTO
    5) for doing a not-empty check at presentation layer, add spring boot starter validation
    6) also add @Valid annotation apart from @NotBlank etc
+3) ref: https://www.youtube.com/watch?v=fyTxwIa-1U0
+4) 
+4) Before Creating JWT Token
+   1) dsf
+   2) 
+4) Creating JWT Token
+   1) create a claim object
+   2) add the claim to JWT builder object
+   3) claim has subject as username, issuedAT & expiryAt
+   4) claim is needed to be signed with a key
+   5) Key has to be created using KeyGenerator for Hmacsha256 algo
+   6) Key may/maynot be base64 encoded
+   7) 
    

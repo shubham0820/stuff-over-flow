@@ -16,11 +16,9 @@ public class Comment {
 
     private String commentContent;
 
-    @ManyToOne
+    @ManyToOne()
     private User postedByUser;
 
     @ManyToOne
-    private Answer commentedOnAnswer;
-
-
+    private Answer answer;
 }
