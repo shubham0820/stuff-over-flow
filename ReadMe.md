@@ -62,6 +62,7 @@ Implementation Steps:
 3) ref: diff b/w session & JWT: https://www.youtube.com/watch?v=fyTxwIa-1U0
 4) Before JWT impl: Config Spring Security: https://www.youtube.com/watch?v=oeni_9g7too
    1) create securityConfig class as a Component
+   2) config securityConfig such that spring goes with flow defined in our class(config. EnableWebSecurity)
    2) create securityfilterchain meth having httpsecurity param
       1) disable csrf -> to make http stateless
       2) authorize the requests
