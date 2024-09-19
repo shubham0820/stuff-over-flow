@@ -1,8 +1,7 @@
-package com.stuffoverflow.learn.service;
+package com.stuffoverflow.learn.security;
 
 import com.stuffoverflow.learn.entity.User;
 import com.stuffoverflow.learn.repository.UserRepo;
-import com.stuffoverflow.learn.utils.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

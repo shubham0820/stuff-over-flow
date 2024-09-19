@@ -1,4 +1,4 @@
-package com.stuffoverflow.learn.utils;
+package com.stuffoverflow.learn.security;
 
 import com.stuffoverflow.learn.entity.Role;
 import com.stuffoverflow.learn.entity.User;

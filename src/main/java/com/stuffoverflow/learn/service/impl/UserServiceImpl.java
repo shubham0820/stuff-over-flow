@@ -8,6 +8,8 @@ import com.stuffoverflow.learn.repository.UserRepo;
 import com.stuffoverflow.learn.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto registerNewUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto, User.class);
+        user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword()));
         Role role = this.roleRepo.findById(501).orElseThrow(()->new RuntimeException("501 roleid not found"));
         user.setRoleSet(Set.of(role));
 
