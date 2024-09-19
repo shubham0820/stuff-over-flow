@@ -8,6 +8,9 @@ import com.stuffoverflow.learn.repository.UserRepo;
 import com.stuffoverflow.learn.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepo roleRepo;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @Override
     public UserDto registerNewUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto, User.class);
@@ -39,6 +45,11 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(createdUser, UserDto.class);
     }
 
+    public boolean verifyUser(UserDto userDto){
+        Authentication authenticate = this.authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userDto.getUserName(),userDto.getPassword()));
+        return authenticate.isAuthenticated();
+    }
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto, User.class);

@@ -79,12 +79,17 @@ Implementation Steps:
       2) return the user
          1) loaduserbyusername returns userdetails interface object 
          2) hence we'll have to create class implementing userdetails
-         3) while calling the above class, pass the user object such that the methods implemented by the class can have user object to return values 
-4) Creating JWT Token
-   1) create a claim object
-   2) add the claim to JWT builder object
-   3) claim has subject as username, issuedAT & expiryAt
-   4) claim is needed to be signed with a key
-   5) Key has to be created using KeyGenerator for Hmacsha256 algo
-   6) Key may/maynot be base64 encoded
+         3) while calling the above class, pass the user object such that the methods implemented by the class can 
+         have user object to return values.
+5) Configuring JWT Token
+   1) add dependency of "JJWT" & "JJWT Impl" || "JJWT Jackson"
+   2) create authenticationManager bean
+   3) return the object of the same
+   4) create verify user details method in user service
+   5) create a claim object
+   6) add the claim to JWT builder object
+   7) claim has subject as username, issuedAT & expiryAt
+   8) claim is needed to be signed with a key
+   9) Key has to be created using KeyGenerator for Hmacsha256 algo
+   10) Key may/maynot be base64 encoded
    
