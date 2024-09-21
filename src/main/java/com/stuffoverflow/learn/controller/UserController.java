@@ -28,11 +28,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody UserDto userDto){
-        if(this.userService.verifyUser(userDto)){
-            return new ResponseEntity<>("user has been verified", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("user not verified", HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(userService.verifyUser(userDto), HttpStatus.FORBIDDEN);
     }
 
     //Create

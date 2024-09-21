@@ -5,13 +5,13 @@ import com.stuffoverflow.learn.entity.User;
 import com.stuffoverflow.learn.payload.UserDto;
 import com.stuffoverflow.learn.repository.RoleRepo;
 import com.stuffoverflow.learn.repository.UserRepo;
+import com.stuffoverflow.learn.security.service.JWTService;
 import com.stuffoverflow.learn.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +34,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private JWTService jwtService;
+
     @Override
     public UserDto registerNewUser(UserDto userDto) {
         User user = this.modelMapper.map(userDto, User.class);
@@ -45,10 +48,13 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(createdUser, UserDto.class);
     }
 
-    public boolean verifyUser(UserDto userDto){
+    public String verifyUser(UserDto userDto){
         Authentication authenticate = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUserName(),userDto.getPassword()));
-        return authenticate.isAuthenticated();
+        if(authenticate.isAuthenticated()){
+            return jwtService.generateToken(userDto.getUserName());
+        }
+        return "failed to authenticate the user";
     }
     @Override
     public UserDto createUser(UserDto userDto) {

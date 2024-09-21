@@ -86,10 +86,14 @@ Implementation Steps:
    2) create authenticationManager bean
    3) return the object of the same
    4) create verify user details method in user service
-   5) create a claim object
-   6) add the claim to JWT builder object
-   7) claim has subject as username, issuedAT & expiryAt
+   5) create a claim hashmap object in the jwt service class
+   6) add the claim to "JWT builder" object
+   7) add the subject as username, issuedAT & expiryAt
    8) claim is needed to be signed with a key
-   9) Key has to be created using KeyGenerator for Hmacsha256 algo
-   10) Key may/maynot be base64 encoded
+      1) to create Key, create jwtService constructor
+      2) create a KeyGenerator object with for HmacSHA256 algo
+      3) store it in SecretKey object & encode it with Base64 Encoder in string format & assign it to the 
+      global variable of secret key
+      4) create a byte object & decode as bytes
+      5) return the key using Key.hmacShaKeyFor method
    
