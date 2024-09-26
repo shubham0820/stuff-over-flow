@@ -96,4 +96,23 @@ Implementation Steps:
       global variable of secret key
       4) create a byte object & decode as bytes
       5) return the key using Key.hmacShaKeyFor method
-   
+6) Validating JWT Token
+   1) By Default User Password Authentication filter works: https://youtu.be/oeni_9g7too?t=9582
+   2) hence we need to pass jwt filter BEFORE that
+   3) hence in the security config class, 
+   add the meth of addfilterbefore & mention the jwtFilter & UserPasswordAuthentication filter
+   4) create JWTFilter class which extends to OncePerFilterClass
+   5) at server side we'll get "Bearer <token>", hence we'll have to extract the token
+      1) from the request, check if the authorization header is provided
+      2) check if the authorization header starts with "Bearer "
+   6) extract username from the token
+   7) if username is not null & the SecurityContextHolder class's authentication, then validate the token
+   8) in token validation: 
+      1) use jwtService to validateToken() -> need to validate using user data
+      2) hence pass userDetails in the validate token meth
+   9) if the token is validated, then
+      1) send info to next filter -> UserPasswordAuthenticationToken
+      2) need to send principal(userDetails), credentials(we can set null TODO), authorities(get from the userdetails object)
+      3) with the authToken, also attach the request object using WebAuthenticationDetailsSource
+      4) after the above, set the authentication token in the chain using SecurityContextHolder object
+   10) Implement the extract username & validate token meth 

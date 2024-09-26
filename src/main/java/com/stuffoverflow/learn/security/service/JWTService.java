@@ -2,6 +2,7 @@ package com.stuffoverflow.learn.security.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -43,8 +44,16 @@ public class JWTService {
                 .compact(); //-> generates token
     }
 
+    public boolean validateToken(String token, UserDetails userDetails){
+
+        return false;
+    }
+
     private Key getKey() {
         byte[] decodedKey = Base64.getDecoder().decode(secretKey);
         return Keys.hmacShaKeyFor(decodedKey);
+    }
+
+    public String extractUserName(String token) {
     }
 }
