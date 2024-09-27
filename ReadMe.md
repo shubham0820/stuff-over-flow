@@ -115,4 +115,5 @@ Implementation Steps:
       2) need to send principal(userDetails), credentials(we can set null TODO), authorities(get from the userdetails object)
       3) with the authToken, also attach the request object using WebAuthenticationDetailsSource
       4) after the above, set the authentication token in the chain using SecurityContextHolder object
-   10) Implement the extract username https://youtu.be/oeni_9g7too?t=10528e & validate token meth 
+   10) Implement the extract username https://youtu.be/oeni_9g7too?t=10528e & validate token meth
+   11) validation & extract username code: https://github.com/navinreddy20/spring6yt/blob/main/Part38-Spring%20Security%206%20Validating%20JWT%20Token/src/main/java/com/telusko/part29springsecex/service/JWTService.java 
