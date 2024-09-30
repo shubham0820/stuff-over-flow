@@ -116,4 +116,8 @@ Implementation Steps:
       3) with the authToken, also attach the request object using WebAuthenticationDetailsSource
       4) after the above, set the authentication token in the chain using SecurityContextHolder object
    10) Implement the extract username https://youtu.be/oeni_9g7too?t=10528e & validate token meth
-   11) validation & extract username code: https://github.com/navinreddy20/spring6yt/blob/main/Part38-Spring%20Security%206%20Validating%20JWT%20Token/src/main/java/com/telusko/part29springsecex/service/JWTService.java 
+   11) validation & extract username code: https://github.com/navinreddy20/spring6yt/blob/main/Part38-Spring%20Security%206%20Validating%20JWT%20Token/src/main/java/com/telusko/part29springsecex/service/JWTService.java
+7) Swagger configuration: https://medium.com/@javedalikhan50/comprehensive-guide-to-openapi-swagger-integration-in-spring-boot-with-spring-security-jwt-edf8c84e7d91
+   1) add dependency: springdoc-openapi-starter-webmvc-ui: 2.2.0
+   2) add websecurityCustomizer in the security config
+   3) Optional: to customize the swagger API, refer [SwaggerConfig class](src/main/java/com/stuffoverflow/learn/swagger/SwaggerConfig.java)
